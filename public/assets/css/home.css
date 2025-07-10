@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+/* --- Paragraf --- */
+p {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.hipmi-text{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 50px;
+  color: #03663C;
+}
+
+.video-profile-text{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  color: #03663C;
+}
+
+.video-who-text{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  color: #FFC90B;
+}
+
+.our-vission{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+/* --- Tampilan Pertama --- */
+.section-pertama {
+  position: relative;
+  padding: 150px 0 120px;
+  background: url('../../images/foto-upi.png') center/cover no-repeat;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.section-pertama::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+.section-pertama::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, white 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.foto-penggabungan {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto; 
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-30px);
+}
+
+.vector-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.foto-hipmi {
+  position: relative;
+  z-index: 2;
+  width: 110%;
+  display: block;
+  padding-left: 20px;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
+
+/* --- Video Profile Section --- */
+.video-profile-section {
+  background-color: white;
+  box-shadow: 0 -15px 20px -10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.embed-responsive {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.embed-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Tombol Custom Hijau--- */
+.btn-custom-gradient {
+  color: #fff;
+  background: linear-gradient(to right, #03663C, #52FFB6);
+  border: none;
+  transition: 0.3s ease;
+  padding: 10px 30px;
+}
+
+.btn-custom-gradient:hover {
+  background: linear-gradient(to right, #52FFB6, #03663C);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* --- Vision & Mission --- */
+.vision-hipmi p {
+  color: #333;
+}
+
+.icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+
+.mission-item {
+  display: flex;
+  align-items: center;
+}
+
+.vision-img {
+  max-width: 500px;
+  width: 75%;
+  transform: translateY(-20px);
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.flip-card-front {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 70px;
+}
+
+.icon-center {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.flip-card-back {
+  background-color: #03663C;
+  color: white;
+  transform: rotateX(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.program-bg {
+  background: linear-gradient(to bottom, #FFE58B, white);
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  padding: 100px 40px 0px 40px ;
+}
+
+.program-section h2 {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+/* Hipmi Info */
+.info-card {
+  background-color: transparent;
+  width: 100%;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.info-card-isi {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hipmi-info h2{
+  margin-bottom: 40px;
+}
+
+.hipmi-info{
+  margin-bottom: 50px;
+}
+
+/* Tombol Custome Kuning */
+.btn-custom-kuning {
+  color: #fff;
+  background: linear-gradient(to right, #FFC90B, #ecc87f);
+  border: none;
+  transition: 0.3s ease;
+  padding: 10px 30px;
+}
+
+.btn-custom-kuning:hover {
+  background: linear-gradient(to right, #ecc87f, #FFC90B);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Artikel Section */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-card {
+  flex: 0 0 auto;
+  width: 300px;
+  border-radius: 12px;
+  border: 2px solid #198754;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.carousel-card img {
+  height: 170px;
+  object-fit: cover; /* ✅ ganti ini */
+  width: 100%;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #f8f9fa; /* opsional, biar area kosong tidak putih polos */
+}
+
+.card-title {
+  font-weight: 700;
+  color: #198754;
+}
+
+.btn-custom {
+  color: #fff;
+  background: linear-gradient(to right, #03663C, #52FFB6);
+  border: none;
+  transition: 0.3s ease;
+  padding: 10px 30px;
+}
+
+.btn-custom:hover {
+  background: linear-gradient(to right, #52FFB6, #03663C);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  color: #198754;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background-color: #198754;
+  color: white;
+}
+
+.nav-prev {
+  left: 10px;
+}
+
+.nav-next {
+  right: 10px;
+}
+
+.artikel-info{
+  margin-bottom: 30px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 991px) {
+  .tampilan-pertama {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    text-align: center;
+  }
+  .program-bg {
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+  }
+
+  .foto-penggabungan {
+    margin-top: 100px;
+    max-width: 90%;
+  }
+
+  .video-profile-section .col-lg-6.ps-lg-5 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    text-align: center;
+  }
+}
