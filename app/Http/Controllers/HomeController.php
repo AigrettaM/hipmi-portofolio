@@ -40,17 +40,20 @@ class HomeController extends Controller
             [
                 'bg' => 'images/achivers-bg.png',
                 'icon' => 'images/icons/achivers.png',
-                'title' => 'Achivers Data',
+                'title' => 'Achievers Data',
+                'route' => 'achievers',
             ],
             [
                 'bg' => 'images/scholarship-bg.png',
                 'icon' => 'images/icons/scholarship.png',
                 'title' => 'Scholarship',
+                'route' => 'scholarship',
             ],
             [
                 'bg' => 'images/bootcamp-bg.png',
                 'icon' => 'images/icons/bootcamp.png',
                 'title' => 'Bootcamp',
+                'route' => 'bootcamp',
             ],
         ];
 
@@ -93,6 +96,11 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home', compact('articles', 'infoCards', 'programs'));
+        return view('home', [
+            'title' => 'Dashboard - HIMPI Portofolio',
+            'articles' => $articles,
+            'infoCards' => $infoCards,
+            'programs' => $programs
+        ]);
     }
 }

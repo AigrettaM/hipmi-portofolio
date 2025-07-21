@@ -4,7 +4,7 @@
         <div class="overlay">
             <img src="{{ asset($icon) }}" class="icon-center" />
             <h3 class="text-white">{{ $title }}</h3><br>
-            <a href="#" class="btn btn-custom-kuning px-4 py-2 rounded-pill fw-semibold">See more</a>
+            <a href="{{ route($route) }}" class="btn btn-custom-kuning px-4 py-2 rounded-pill fw-semibold">See more</a>
         </div>
     </div>
   </div>

@@ -2,8 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\InfoController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/contact', function () {
+    return view('contact', [
+            'title' => 'Contact - HIMPI Portofolio'
+    ]);
+})->name('contact');
+Route::get('/info/achievers', [InfoController::class, 'achievers'])->name('achievers');
+Route::get('/info/sholarship', [InfoController::class, 'scholarship'])->name('scholarship');
+Route::get('/info/bootcamp', [InfoController::class, 'bootcamp'])->name('bootcamp');
 
 Route::get('/admins', function () {
     return view('login_admin.adminhipmi');
@@ -13,7 +24,7 @@ Route::post('/logout', function () {
     // Clear any session data if you're using sessions
     // session()->flush();
     // Auth::logout(); // If you're using authentication
-    
+
     return redirect()->route('admin.login')->with('success', 'Anda berhasil logout!');
 })->name('logout');
 
@@ -22,7 +33,7 @@ Route::prefix('admins')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('laman_admin.dashboard');
     })->name('dashboard');
-    
+
     // Accounts Routes
     Route::get('/accounts', function () {
         return view('laman_admin.account');
@@ -33,7 +44,7 @@ Route::prefix('admins')->name('admin.')->group(function () {
     Route::get('/add-account', function () {
         return view('laman_admin.add_account');
     })->name('add.account');
-    
+
     // Katalog Routes
     Route::get('/katalog', function () {
         return view('laman_admin.katalog');
@@ -47,7 +58,7 @@ Route::prefix('admins')->name('admin.')->group(function () {
     // Route::get('/data-katalog', function () {
     //     return view('laman_admin.data_katalog');
     // })->name('data.katalog');
-    
+
     // Achievers Routes
     Route::get('/achievers', function () {
         return view('laman_admin.achievers');
@@ -61,7 +72,7 @@ Route::prefix('admins')->name('admin.')->group(function () {
     Route::get('/data-achievers', function () {
         return view('laman_admin.data_achievers');
     })->name('data.achievers');
-    
+
     // Pengurus Routes
     Route::get('/pengurus', function () {
         return view('laman_admin.pengurus');

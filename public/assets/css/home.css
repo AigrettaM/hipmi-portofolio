@@ -8,6 +8,14 @@ body {
   overflow-x: hidden;
 }
 
+.text-primary {
+    color: #03663C !important;
+}
+
+.bg-primary {
+    background-color: #03663C !important;
+}
+
 /* --- Paragraf --- */
 p {
   font-family: "Lato", sans-serif;
@@ -81,7 +89,7 @@ p {
   position: relative;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto; 
+  margin: 0 auto;
   z-index: 3;
   display: flex;
   justify-content: center;
