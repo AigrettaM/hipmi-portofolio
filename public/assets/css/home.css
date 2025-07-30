@@ -23,6 +23,12 @@ p {
   font-size: 16px;
 }
 
+.navigation-text-btn{
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+}
 .hipmi-text{
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -57,7 +63,7 @@ p {
 /* --- Tampilan Pertama --- */
 .section-pertama {
   position: relative;
-  padding: 150px 0 120px;
+  padding: 110px 0 110px;
   background: url('../../images/foto-upi.png') center/cover no-repeat;
   z-index: 1;
   overflow: hidden;
@@ -177,6 +183,7 @@ p {
   transform: translateY(-20px);
 }
 
+/* Flip Card */
 .flip-card {
   background-color: transparent;
   width: 100%;
@@ -325,11 +332,11 @@ p {
 
 .carousel-card img {
   height: 170px;
-  object-fit: cover; /* ✅ ganti ini */
+  object-fit: cover;
   width: 100%;
   border-radius: 20px;
   padding: 10px;
-  background-color: #f8f9fa; /* opsional, biar area kosong tidak putih polos */
+  background-color: #f8f9fa;
 }
 
 .card-title {
@@ -385,6 +392,59 @@ p {
   margin-bottom: 30px;
 }
 
+/* FOOTER STYLE */
+.footer-hipmi {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  font-size: 16px;
+}
+
+.footer-hipmi a {
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.footer-hipmi a img {
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.footer-hipmi h5 {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+.footer-hipmi img[alt="Logo HIPMI"] {
+  max-height: 180px;
+  width: auto;
+}
+
+.footer-hipmi .mb-2 img {
+  height: 48px;
+  width: 48px;
+  margin-bottom: 9px;
+  transition: transform 0.2s ease;
+}
+
+.footer-hipmi .mb-2 img:hover {
+  transform: scale(1.15);
+}
+
+.footer-hipmi ul li {
+  margin-bottom: 8px;
+}
+
+.footer-hipmi p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer-hipmi small {
+  font-size: 13px;
+}
+
 /* --- Responsive --- */
 @media (max-width: 991px) {
   .tampilan-pertama {
@@ -394,6 +454,7 @@ p {
     padding-right: 15px !important;
     text-align: center;
   }
+
   .program-bg {
     border-top-left-radius: 70px;
     border-top-right-radius: 70px;

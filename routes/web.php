@@ -12,9 +12,17 @@ Route::get('/contact', function () {
             'title' => 'Contact - HIMPI Portofolio'
     ]);
 })->name('contact');
-Route::get('/info/achievers', [InfoController::class, 'achievers'])->name('achievers');
-Route::get('/info/sholarship', [InfoController::class, 'scholarship'])->name('scholarship');
-Route::get('/info/bootcamp', [InfoController::class, 'bootcamp'])->name('bootcamp');
+
+Route::get('/hipmi', function () {
+    return view('hipmi'); // atau view sesuai kebutuhanmu
+})->name('hipmi');
+
+Route::prefix('info')->name('info.')->group(function () {
+    Route::get('/achievers', [InfoController::class, 'achievers'])->name('achievers');
+    Route::get('/scholarship', [InfoController::class, 'scholarship'])->name('scholarship');
+    Route::get('/bootcamp', [InfoController::class, 'bootcamp'])->name('bootcamp');
+});
+
 
 Route::get('/admins', function () {
     return view('login_admin.adminhipmi');
@@ -87,3 +95,4 @@ Route::prefix('admins')->name('admin.')->group(function () {
         return view('laman_admin.data_pengurus');
     })->name('data.pengurus');
 });
+

@@ -1,51 +1,53 @@
-<x-layouts.user-side-layout>
+@extends('layouts.app')
 
-    <x-slot:title>{{ $title }}</x-slot:title>
-    <!-- SECTION 1: TAMPILAN PERTAMA -->
-    <section class="section-pertama">
-        <div class="container position-relative">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-black">
-                    <h1 class="hipmi-text">HIPMI PT UPI<br><span class="text-warning">CIBIRU</span></h1>
-                    <p class="my-3 text-dark">
-                        HIPMI PT UPI Kampus di Cibiru adalah organisasi mahasiswa yang berfokus pada pengembangan kewirausahaan.
-                        Kami menjadi wadah bagi para calon pengusaha untuk mendapatkan pelatihan bisnis, membangun jejaring yang
-                        luas, serta bimbingan praktis untuk mengubah ide menjadi usaha nyata sejak di bangku kuliah.
-                    </p>
-                    <a href="#" class="btn btn-custom-gradient px-4 py-2 rounded-pill fw-bold">Join Now</a>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center">
-                    <div class="foto-penggabungan">
-                        <img src="{{ asset('images/Vector.png') }}" alt="Vector" class="vector-shape" />
-                        <img src="{{ asset('images/foto-hipmi.png') }}" alt="Foto Tim" class="foto-hipmi" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+@section('title', 'Beranda - HIPMI PT UPI Cibiru')
 
-    <!-- SECTION 2: VIDEO PROFILE -->
-    <section class="video-profile-section py-4">
-        <div class="container my-3">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IiKhNd18VH8?si=_3Zzhv1xlvEFWsXo" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-lg-6 ps-lg-5">
-                    <h3 class="video-who-text">Who we are?</h3>
-                    <h2 class="video-profile-text">Video Profile</h2>
-                    <p class="text-secondary mb-4">
-                        With the spirit of Empowering Inclusivity, HIPMI PT UPI CIBIRU is here to create a more inclusive space,
-                        empower every potential young entrepreneur, and embrace diversity as a strength in building a sustainable
-                        business ecosystem.
-                    </p>
-                    <a href="https://www.instagram.com/hipmiupi.kamdacibiru/" class="btn btn-custom-gradient px-4 py-2 rounded-pill fw-bold">See more</a>
-                </div>
-            </div>
+@section('content')
+  <!-- SECTION 1: TAMPILAN PERTAMA -->
+  <section class="section-pertama">
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-black">
+          <h1 class="hipmi-text">HIPMI PT UPI<br><span class="text-warning">CIBIRU</span></h1>
+          <p class="my-3 text-dark">
+            HIPMI PT UPI Kampus di Cibiru adalah organisasi mahasiswa yang berfokus pada pengembangan kewirausahaan.
+            Kami menjadi wadah bagi para calon pengusaha untuk mendapatkan pelatihan bisnis, membangun jejaring yang
+            luas, serta bimbingan praktis untuk mengubah ide menjadi usaha nyata sejak di bangku kuliah.
+          </p>
+          <a href="#" class="btn btn-custom-gradient px-4 py-2 rounded-pill fw-bold">Join Now</a>
         </div>
-    </section>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div class="foto-penggabungan">
+            <img src="{{ asset('images/Vector.png') }}" alt="Vector" class="vector-shape" />
+            <img src="{{ asset('images/foto-hipmi.png') }}" alt="Foto Tim" class="foto-hipmi" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: VIDEO PROFILE -->
+  <section class="video-profile-section py-4">
+    <div class="container my-3">
+      <div class="row align-items-center">  
+        <div class="col-lg-6 mb-6 mb-lg-0">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IiKhNd18VH8?si=_3Zzhv1xlvEFWsXo" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6 ps-lg-5">
+          <h3 class="video-who-text">Who we are?</h3>
+          <h2 class="video-profile-text">Video Profile</h2>
+          <p class="text-secondary mb-4">
+            With the spirit of Empowering Inclusivity, HIPMI PT UPI CIBIRU is here to create a more inclusive space,
+            empower every potential young entrepreneur, and embrace diversity as a strength in building a sustainable
+            business ecosystem.
+          </p>
+          <a href="https://www.instagram.com/hipmiupi.kamdacibiru/" class="btn btn-custom-gradient px-4 py-2 rounded-pill fw-bold">See more</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <!-- SECTION 3: VISION & MISSION -->
     <section class="vision-hipmi py-4">
@@ -159,4 +161,4 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</x-layouts.user-side-layout>
+@endsection

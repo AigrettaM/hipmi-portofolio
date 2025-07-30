@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 class InfoController extends Controller
 {
     public function achievers(){
+        $achievers = [
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png',
+            'images/achivers-carousel.png'
+        ];
+
         return view('achievers', [
-            'title' => 'Achievers - HIMPI Portofolio'
+            'title' => 'Achievers - HIMPI Portofolio',
+            'achievers' => $achievers
         ]);
     }
 

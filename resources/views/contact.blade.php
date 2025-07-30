@@ -1,13 +1,17 @@
-<x-layouts.user-side-layout>
+@extends('layouts.app')
 
+@section('title', 'Beranda - HIPMI PT UPI Cibiru')
+
+@section('content')
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="position-relative">
-        <img src="{{ asset('images/yellow-fluid.png') }}" alt="">
+        <img src="{{ asset('images/yellow-fluid.png') }}" alt="" style="width: 340px">
         <div class="position-absolute bottom-0 start-50 translate-middle">
             <h1 class="hipmi-text text-center fs-1">Get Intouch</h1>
             <h6 class="text-warning fw-bold text-center">We would love to hear from you.</h6>
         </div>
     </div>
+    
 
     <section class="py-5 bg-white">
         <div class="container">
@@ -98,4 +102,5 @@
             </div>
         </div>
     </section>
-</x-layouts.user-side-layout>
+
+@endsection

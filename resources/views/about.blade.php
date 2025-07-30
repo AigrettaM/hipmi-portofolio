@@ -1,15 +1,17 @@
-<x-layouts.user-side-layout>
+@extends('layouts.app')
 
-    <x-slot:title>{{ $title }}</x-slot:title>
+@section('title', 'Beranda - HIPMI PT UPI Cibiru')
+
+@section('content')
     <div class="position-relative">
-        <img src="{{ asset('images/yellow-fluid.png') }}" alt="">
+        <img src="{{ asset('images/yellow-fluid.png') }}" alt="" style="width: 340px">
         <div class="position-absolute bottom-0 start-50 translate-middle">
             <h1 class="hipmi-text text-center fs-1">About</h1>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative py-5 bg-white">
+    <section class="relative pt-3 pb-4 bg-white">
         <div class="container position-relative">
             <div class="row align-items-center">
                 <div class="col-md-7 d-flex justify-content-center">
@@ -103,4 +105,4 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</x-layouts.user-side-layout>
+@endsection

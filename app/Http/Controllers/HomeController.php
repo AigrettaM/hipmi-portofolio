@@ -41,19 +41,19 @@ class HomeController extends Controller
                 'bg' => 'images/achivers-bg.png',
                 'icon' => 'images/icons/achivers.png',
                 'title' => 'Achievers Data',
-                'route' => 'achievers',
+                'route' => 'info.achievers',
             ],
             [
                 'bg' => 'images/scholarship-bg.png',
                 'icon' => 'images/icons/scholarship.png',
                 'title' => 'Scholarship',
-                'route' => 'scholarship',
+                'route' => 'info.scholarship',
             ],
             [
                 'bg' => 'images/bootcamp-bg.png',
                 'icon' => 'images/icons/bootcamp.png',
                 'title' => 'Bootcamp',
-                'route' => 'bootcamp',
+                'route' => 'info.bootcamp',
             ],
         ];
 
