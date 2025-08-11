@@ -9,7 +9,7 @@
         Tambah Data Pengurus
     </div>
     <div class="card-body-custom">
-        <form action="{{ route('admin.pengurus.store') }}" method="POST" enctype="multipart/form-data" id="pengurusForm" class="form-container">
+        <form action="{{ route('admin.team.store') }}" method="POST" enctype="multipart/form-data" id="pengurusForm" class="form-container">
             @csrf
             
             <div class="form-group">
@@ -209,7 +209,7 @@ document.getElementById('pengurusForm').addEventListener('submit', function(e) {
     
     // Auto redirect ke halaman pengurus setelah 3 detik
     setTimeout(function() {
-        window.location.href = "{{ route('admin.pengurus') }}";
+        window.location.href = "{{ route('admin.team') }}";
     }, 3000);
 });
 

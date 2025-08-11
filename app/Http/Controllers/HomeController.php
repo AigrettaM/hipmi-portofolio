@@ -3,38 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $articles = [
-            [
-                'title' => '7 Tips Jitu untuk Menjadi Pengusaha Sukses',
-                'image' =>  asset('images/foto-artikel.png'),
-                'link'  => '/artikel/1'
-            ],
-            [
-                'title' => 'Strategi Branding UMKM',
-                'image' => asset('images/foto-artikel.png'),
-                'link'  => '/artikel/2'
-            ],
-            [
-                'title' => 'Cara Meningkatkan Penjualan Online',
-                'image' => asset('images/foto-artikel.png'),
-                'link'  => '/artikel/3'
-            ],
-            [
-                'title' => 'Cara Meningkatkan Penjualan Online',
-                'image' => asset('images/foto-artikel.png'),
-                'link'  => '/artikel/3'
-            ],
-            [
-                'title' => 'Cara Meningkatkan Penjualan Online',
-                'image' => asset('images/foto-artikel.png'),
-                'link'  => '/artikel/3'
-            ],
-        ];
+        $articles = Article::all()->map(function($article) {
+            return [
+                'title' => $article->title,
+                'image' => $article->thumbnail ? asset('storage/' . $article->thumbnail) : asset('images/foto-artikel.png'),
+                'link' => '/artikel/' . $article->id
+            ];
+        })->toArray();
 
         $infoCards = [
             [

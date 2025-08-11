@@ -21,7 +21,7 @@
                 <div class="carousel-track" id="carouselTrack">
                     @foreach ($achievers as $achiever)
                         <x-carousel
-                            image="{{ asset($achiever) }}"
+                            image="{{ $achiever }}"
                         />
                     @endforeach
                 </div>

@@ -6,23 +6,41 @@
 @section('content')
 <div class="admin-card">
     <div class="card-header-custom">
-        Tambah Achievers data
+        {{ isset($achiever) ? 'Edit Achiever' : 'Tambah Achievers data' }}
     </div>
     <div class="card-body-custom">
-        <form action="{{ route('admin.achievers.store') }}" method="POST" enctype="multipart/form-data" id="achieversForm" class="form-container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ isset($achiever) ? route('admin.achievers.update', $achiever->id) : route('admin.achievers.store') }}" method="POST" enctype="multipart/form-data" class="form-container">
             @csrf
-            
-            <div class="form-group">
+            @if(isset($achiever))
+                @method('POST')
+            @endif
+            <div class="form-group mb-3">
                 <label for="foto" class="form-label-custom">Foto</label>
                 <div class="file-input-wrapper">
                     <input type="file" id="foto" name="foto" class="file-input-custom" accept="image/*">
                     <label for="foto" class="file-input-label">
                         <i class="fas fa-upload me-2"></i>Pilih File
                     </label>
-                    <span class="file-info">tidak ada file yang dipilih</span>
+                    <span class="file-info">{{ isset($achiever) && $achiever->photo_url ? basename($achiever->photo_url) : 'tidak ada file yang dipilih' }}</span>
                 </div>
+                @if(isset($achiever) && $achiever->photo_url)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $achiever->photo_url) }}" alt="Foto" style="width: 120px; height: 80px; object-fit: cover; border-radius: 6px;">
+                    </div>
+                @endif
+                @error('foto')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
-            
             <div class="text-end">
                 <button type="submit" class="btn-primary-custom">
                     <i class="fas fa-save"></i>
@@ -144,63 +162,5 @@
 @endsection
 
 @section('scripts')
-<script>
-document.getElementById('achieversForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Tampilkan notifikasi sukses
-    showSuccessNotification();
-    
-    // Auto redirect ke halaman achievers setelah 3 detik
-    setTimeout(function() {
-        window.location.href = "{{ route('admin.achievers') }}";
-    }, 3000);
-});
-
-function showSuccessNotification() {
-    const notification = document.createElement('div');
-    notification.innerHTML = `
-        <div class="alert alert-success" style="
-            position: fixed; 
-            top: 20px; 
-            right: 20px; 
-            z-index: 9999; 
-            min-width: 300px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            font-weight: 600;
-        ">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-check-circle me-2" style="font-size: 18px;"></i>
-                <div>
-                    <strong>Berhasil!</strong><br>
-                    <small>Data achievers berhasil ditambahkan. Akan redirect dalam <span id="countdown">3</span> detik...</small>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Countdown timer
-    let countdown = 3;
-    const countdownElement = document.getElementById('countdown');
-    const countdownInterval = setInterval(function() {
-        countdown--;
-        countdownElement.textContent = countdown;
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-        }
-    }, 1000);
-    
-    // Hapus notifikasi setelah 3.5 detik
-    setTimeout(function() {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 3500);
-}
-</script>
+{{-- No JS needed for form submit, handled by backend --}}
+@endsection

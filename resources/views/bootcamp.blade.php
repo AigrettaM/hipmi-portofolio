@@ -18,7 +18,8 @@
                     @component('components.scholarship-bootcamp-card', [
                         'image' => $card['image'],
                         'name' => $card['name'],
-                        'desc' => $card['desc']
+                        'desc' => $card['desc'],
+                        'link' => $card['link'] ?? '#'
                     ])
                     @endcomponent
                 @endforeach

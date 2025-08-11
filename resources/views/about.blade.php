@@ -75,11 +75,11 @@
                     <button class="nav-button nav-next" onclick="moveSlide(1)">&#8250;</button>
 
                     <div class="carousel-track" id="carouselTrack">
-                    @foreach ($members as $member)
+                    @foreach ($teams as $team)
                         <x-member-card
-                            :image="$member['image']"
-                            :name="$member['name']"
-                            :position="$member['position']"
+                            :image="$team->photo_url ? asset('storage/' . $team->photo_url) : asset('images/dummy-profile.png')"
+                            :name="$team->name"
+                            :position="$team->position"
                         />
                     @endforeach
                     </div>

@@ -18,59 +18,37 @@
                 <thead>
                     <tr>
                         <th style="width: 60px;">No</th>
-                        <th style="width: 80px;">foto</th>
+                        <th style="width: 80px;">Foto</th>
                         <th style="width: 150px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($achievers as $index => $achiever)
                     <tr>
-                        <td>1.</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>
+                            @if($achiever->photo_url)
+                                <img src="{{ asset('storage/' . $achiever->photo_url) }}" alt="Foto" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px;">
+                            @else
                             <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
                                 <i class="fas fa-user" style="color: #6c757d; font-size: 18px;"></i>
                             </div>
+                            @endif
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
+                            <a href="{{ route('admin.achievers.edit', $achiever->id) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Edit</a>
+                            <form action="{{ route('admin.achievers.destroy', $achiever->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                            </form>
                         </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td>2.</td>
-                        <td>
-                            <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-trophy" style="color: #6c757d; font-size: 18px;"></i>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
-                        </td>
+                        <td colspan="3" class="text-center">Belum ada data achievers.</td>
                     </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>
-                            <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-medal" style="color: #6c757d; font-size: 18px;"></i>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
-                        </td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

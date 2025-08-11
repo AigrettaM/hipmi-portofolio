@@ -2,53 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    /**
+     * Display the about page
+     */
     public function index()
     {
-        $members = [
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-            [
-                'name' => 'Lorem Ipsum',
-                'image' =>  asset('images/dummy-profile.png'),
-                'position'  => 'Anggota'
-            ],
-        ];
-
+        $teams = Team::all();
+        
         return view('about', [
             'title' => 'About - HIMPI Portofolio',
-            'members' => $members
+            'teams' => $teams
         ]);
     }
 }

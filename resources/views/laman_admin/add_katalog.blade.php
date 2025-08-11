@@ -4,51 +4,83 @@
 @section('page-title', 'Katalog')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="admin-card">
     <div class="card-header-custom">
-        Tambah Data Katalog
+        {{ isset($item) ? 'Edit Katalog' : 'Tambah Data Katalog' }}
     </div>
     <div class="card-body-custom">
-        <form action="{{ route('admin.katalog.store') }}" method="POST" enctype="multipart/form-data" id="katalogForm" class="form-container">
+        <form action="{{ isset($item) ? route('admin.katalog.update', [$item->kategori, $item->id]) : route('admin.katalog.store') }}" method="POST" enctype="multipart/form-data" class="form-container">
             @csrf
+            @if(isset($item))
+                @method('POST')
+            @endif
             
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <label for="judul" class="form-label-custom">Judul</label>
+                <input type="text" id="judul" name="judul" class="form-control-custom" placeholder="Masukkan judul katalog" value="{{ old('judul', $item->title ?? '') }}">
+                @error('judul')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="deskripsi" class="form-label-custom">Deskripsi</label>
+                <textarea id="deskripsi" name="deskripsi" class="form-control-custom" rows="4" placeholder="Masukkan deskripsi katalog">{{ old('deskripsi', $item->description ?? '') }}</textarea>
+                @error('deskripsi')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="link" class="form-label-custom">Link</label>
+                <input type="url" id="link" name="link" class="form-control-custom" placeholder="https://example.com" value="{{ old('link', $item->link ?? '') }}">
+                @error('link')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="kategori" class="form-label-custom">Kategori</label>
+                <div class="position-relative">
+                    <select id="kategori" name="kategori" class="form-control-custom">
+                        <option value="">Pilih kategori</option>
+                        <option value="scholarship" {{ old('kategori', $item->kategori ?? '') == 'scholarship' ? 'selected' : '' }}>Scholarship</option>
+                        <option value="bootcamp" {{ old('kategori', $item->kategori ?? '') == 'bootcamp' ? 'selected' : '' }}>Bootcamp</option>
+                        <option value="article" {{ old('kategori', $item->kategori ?? '') == 'article' ? 'selected' : '' }}>Article</option>
+                    </select>
+                    <i class="fas fa-chevron-down position-absolute" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d; pointer-events: none;"></i>
+                </div>
+                @error('kategori')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group mb-3">
                 <label for="foto" class="form-label-custom">Foto</label>
                 <div class="file-input-wrapper">
                     <input type="file" id="foto" name="foto" class="file-input-custom" accept="image/*">
                     <label for="foto" class="file-input-label">
                         <i class="fas fa-upload me-2"></i>Pilih File
                     </label>
-                    <span class="file-info">tidak ada file yang dipilih</span>
+                    <span class="file-info">{{ isset($item) && $item->image_url ? basename($item->image_url) : 'tidak ada file yang dipilih' }}</span>
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="judul" class="form-label-custom">Judul</label>
-                <input type="text" id="judul" name="judul" class="form-control-custom" placeholder="Masukkan judul katalog">
-            </div>
-            
-            <div class="form-group">
-                <label for="deskripsi" class="form-label-custom">Deskripsi</label>
-                <textarea id="deskripsi" name="deskripsi" class="form-control-custom" rows="4" placeholder="Masukkan deskripsi katalog"></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="link" class="form-label-custom">Link</label>
-                <input type="url" id="link" name="link" class="form-control-custom" placeholder="https://example.com">
-            </div>
-            
-            <div class="form-group">
-                <label for="kategori" class="form-label-custom">Kategori</label>
-                <div class="position-relative">
-                    <select id="kategori" name="kategori" class="form-control-custom">
-                        <option value="">Pilih kategori</option>
-                        <option value="scholarship">Scholarship</option>
-                        <option value="boothcamp">Boothcamp</option>
-                        <option value="artikel">Artikel</option>
-                    </select>
-                    <i class="fas fa-chevron-down position-absolute" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d; pointer-events: none;"></i>
-                </div>
+                @if(isset($item) && $item->image_url)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $item->image_url) }}" alt="Foto" style="width: 120px; height: 80px; object-fit: cover; border-radius: 6px;">
+                    </div>
+                @endif
+                @error('foto')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
             
             <div class="text-end">
@@ -162,62 +194,22 @@
 
 @section('scripts')
 <script>
-document.getElementById('katalogForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Tampilkan notifikasi sukses
-    showSuccessNotification();
-    
-    // Auto redirect ke halaman katalog setelah 3 detik
-    setTimeout(function() {
-        window.location.href = "{{ route('admin.katalog') }}";
-    }, 3000);
+document.getElementById('kategori').addEventListener('change', function() {
+    const dateField = document.getElementById('dateField');
+    if (this.value === 'bootcamp') {
+        dateField.style.display = 'block';
+    } else {
+        dateField.style.display = 'none';
+    }
 });
 
-function showSuccessNotification() {
-    const notification = document.createElement('div');
-    notification.innerHTML = `
-        <div class="alert alert-success" style="
-            position: fixed; 
-            top: 20px; 
-            right: 20px; 
-            z-index: 9999; 
-            min-width: 300px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            font-weight: 600;
-        ">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-check-circle me-2" style="font-size: 18px;"></i>
-                <div>
-                    <strong>Berhasil!</strong><br>
-                    <small>Data katalog berhasil ditambahkan. Akan redirect dalam <span id="countdown">3</span> detik...</small>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Countdown timer
-    let countdown = 3;
-    const countdownElement = document.getElementById('countdown');
-    const countdownInterval = setInterval(function() {
-        countdown--;
-        countdownElement.textContent = countdown;
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-        }
-    }, 1000);
-    
-    // Hapus notifikasi setelah 3.5 detik
-    setTimeout(function() {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 3500);
-}
+// Show date field on page load if kategori is bootcamp
+document.addEventListener('DOMContentLoaded', function() {
+    const kategoriSelect = document.getElementById('kategori');
+    const dateField = document.getElementById('dateField');
+    if (kategoriSelect.value === 'bootcamp') {
+        dateField.style.display = 'block';
+    }
+});
 </script>
+@endsection

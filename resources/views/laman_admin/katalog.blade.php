@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <th style="width: 60px;">No</th>
-                        <th style="width: 80px;">foto</th>
-                        <th>judul</th>
+                        <th style="width: 80px;">Foto</th>
+                        <th>Judul</th>
                         <th>Deskripsi</th>
                         <th>Link</th>
                         <th>Kategori</th>
@@ -27,66 +27,103 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $no = 1; @endphp
+                    
+                    {{-- Scholarships --}}
+                    @foreach($scholarships as $scholarship)
                     <tr>
-                        <td>1.</td>
+                            <td>{{ $no++ }}</td>
                         <td>
+                                @if($scholarship->image_url)
+                                    <img src="{{ asset('storage/' . $scholarship->image_url) }}" alt="Foto" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px;">
+                                @else
                             <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-user" style="color: #6c757d; font-size: 18px;"></i>
+                                        <i class="fas fa-graduation-cap" style="color: #6c757d; font-size: 18px;"></i>
                             </div>
+                                @endif
                         </td>
-                        <td>judul</td>
-                        <td>deskripsi</td>
-                        <td>http</td>
-                        <td>bootcamp</td>
-                        <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
+                            <td>{{ $scholarship->title }}</td>
+                            <td>{{ Str::limit($scholarship->description, 50) }}</td>
+                            <td>{{ Str::limit($scholarship->link, 30) }}</td>
+                            <td><span class="badge bg-primary">Scholarship</span></td>
+                            <td>
+                                <a href="{{ route('admin.katalog.edit', ['scholarship', $scholarship->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
+                                    Edit
+                                </a>
+                                <form action="{{ route('admin.katalog.destroy', ['scholarship', $scholarship->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                </form>
                         </td>
                     </tr>
+                    @endforeach
+                    
+                    {{-- Bootcamps --}}
+                    @foreach($bootcamps as $bootcamp)
                     <tr>
-                        <td>2.</td>
+                            <td>{{ $no++ }}</td>
                         <td>
+                                @if($bootcamp->image_url)
+                                    <img src="{{ asset('storage/' . $bootcamp->image_url) }}" alt="Foto" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px;">
+                                @else
                             <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-image" style="color: #6c757d; font-size: 18px;"></i>
+                                        <i class="fas fa-laptop-code" style="color: #6c757d; font-size: 18px;"></i>
                             </div>
+                                @endif
                         </td>
-                        <td>Workshop Digital Marketing</td>
-                        <td>Pelatihan digital marketing untuk UMKM</td>
-                        <td>https://workshop.hipmi.com</td>
-                        <td>Workshop</td>
-                        <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
+                            <td>{{ $bootcamp->title }}</td>
+                            <td>{{ Str::limit($bootcamp->description, 50) }}</td>
+                            <td>{{ Str::limit($bootcamp->link, 30) }}</td>
+                            <td><span class="badge bg-success">Bootcamp</span></td>
+                            <td>
+                                <a href="{{ route('admin.katalog.edit', ['bootcamp', $bootcamp->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
+                                    Edit
+                                </a>
+                                <form action="{{ route('admin.katalog.destroy', ['bootcamp', $bootcamp->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                </form>
                         </td>
                     </tr>
+                    @endforeach
+                    
+                    {{-- Articles --}}
+                    @foreach($articles as $article)
                     <tr>
-                        <td>3.</td>
+                            <td>{{ $no++ }}</td>
                         <td>
+                                @if($article->thumbnail)
+                                    <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="Foto" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px;">
+                                @else
                             <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-file-alt" style="color: #6c757d; font-size: 18px;"></i>
+                                        <i class="fas fa-newspaper" style="color: #6c757d; font-size: 18px;"></i>
                             </div>
+                                @endif
                         </td>
-                        <td>Seminar Kewirausahaan</td>
-                        <td>Seminar tentang jiwa kewirausahaan muda</td>
-                        <td>https://seminar.hipmi.id</td>
-                        <td>Seminar</td>
-                        <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
-                            </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
-                            </button>
+                            <td>{{ $article->title }}</td>
+                            <td>{{ Str::limit($article->content, 50) }}</td>
+                            <td>-</td>
+                            <td><span class="badge bg-info">Article</span></td>
+                            <td>
+                                <a href="{{ route('admin.katalog.edit', ['article', $article->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
+                                    Edit
+                                </a>
+                                <form action="{{ route('admin.katalog.destroy', ['article', $article->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                </form>
                         </td>
                     </tr>
+                    @endforeach
+                    
+                    @if($scholarships->count() == 0 && $bootcamps->count() == 0 && $articles->count() == 0)
+                        <tr>
+                            <td colspan="7" class="text-center">Belum ada data katalog.</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

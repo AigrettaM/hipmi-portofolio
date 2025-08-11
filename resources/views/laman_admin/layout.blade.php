@@ -900,7 +900,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.pengurus') }}" class="nav-link {{ request()->routeIs('admin.pengurus') ? 'active' : '' }}">
+                    <a href="{{ route('admin.team') }}" class="nav-link {{ request()->routeIs('admin.team') ? 'active' : '' }}">
                         <i class="fas fa-user-tie"></i>
                         Pengurus
                     </a>

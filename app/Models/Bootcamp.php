@@ -10,7 +10,6 @@ class Bootcamp extends Model
         'title',
         'description',
         'image_url',
-        'link',
-        'date',
+        'link'
     ];
 }
