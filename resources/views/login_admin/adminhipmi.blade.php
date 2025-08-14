@@ -22,8 +22,23 @@
                             <h2 class="login-subtitle">HIPMI PT UPI CIBIRU</h2>
                         </div>
                         
+                        <!-- Error Messages -->
+                        @if($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                                {{ $errors->first() }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+                        
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+                        
                         <!-- Login Form -->
-                        <form id="loginForm" action="#" method="POST">
+                        <form id="loginForm" action="{{ route('admin.login.post') }}" method="POST">
                             @csrf
                             
                             <!-- Username Field -->
@@ -119,13 +134,12 @@
     
     // Form submission handler
     document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const loginButton = document.querySelector('.btn-login');
         
         if (!username || !password) {
+            e.preventDefault();
             alert('Please fill in all fields');
             return;
         }
@@ -134,13 +148,17 @@
         loginButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Logging in...';
         loginButton.disabled = true;
         
-        // Simple validation (you can customize this)
-        console.log('Login attempt:', {username, password});
+        // Store role in localStorage for frontend use (will be synced with session)
+        let userRole = 'regular_admin';
+        if (username.toLowerCase() === 'superadmin' && password === 'superadmin123') {
+            userRole = 'super_admin';
+        }
         
-        // Simulate loading delay and then redirect
-        setTimeout(() => {
-            window.location.href = '/admins/dashboard';
-        }, 1000);
+        localStorage.setItem('admin_role', userRole);
+        localStorage.setItem('admin_username', username);
+        
+        // Let the form submit normally to server
+        // The server will validate and set the session
     });
     
     // Add smooth transitions

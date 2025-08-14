@@ -18,7 +18,8 @@
                 <thead>
                     <tr>
                         <th style="width: 60px;">No</th>
-                        <th style="width: 80px;">Foto</th>
+                        <th style="width: 200px;">Nama Foto</th>
+                        <th>Keterangan</th>
                         <th style="width: 150px;">Aksi</th>
                     </tr>
                 </thead>
@@ -28,25 +29,30 @@
                         <td>{{ $index + 1 }}</td>
                         <td>
                             @if($achiever->photo_url)
-                                <img src="{{ asset('storage/' . $achiever->photo_url) }}" alt="Foto" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px;">
+                                {{ basename($achiever->photo_url) }}
                             @else
-                            <div class="d-flex align-items-center justify-content-center" style="width: 60px; height: 40px; background-color: #e9ecef; border-radius: 6px;">
-                                <i class="fas fa-user" style="color: #6c757d; font-size: 18px;"></i>
-                            </div>
+                                <span class="text-muted">Tidak ada foto</span>
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.achievers.edit', $achiever->id) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Edit</a>
+                            {{ $achiever->description ?? 'Tidak ada keterangan' }}
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.achievers.edit', $achiever->id) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
                             <form action="{{ route('admin.achievers.destroy', $achiever->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center">Belum ada data achievers.</td>
+                        <td colspan="4" class="text-center">Belum ada data achievers.</td>
                     </tr>
                     @endforelse
                 </tbody>

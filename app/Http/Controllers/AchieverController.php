@@ -32,12 +32,14 @@ class AchieverController extends Controller
     {
         $validated = $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string|max:1000',
         ]);
 
         $photo_url = $request->file('foto')->store('achievers', 'public');
 
         Achiever::create([
             'photo_url' => $photo_url,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('admin.achievers')
@@ -62,6 +64,7 @@ class AchieverController extends Controller
         
         $validated = $request->validate([
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string|max:1000',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -74,6 +77,7 @@ class AchieverController extends Controller
 
         $achiever->update([
             'photo_url' => $achiever->photo_url,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('admin.achievers')

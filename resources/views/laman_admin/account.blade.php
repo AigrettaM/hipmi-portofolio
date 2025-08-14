@@ -13,14 +13,18 @@
         </a>
     </div>
     <div class="card-body-custom">
+        <div class="alert alert-info mb-4" style="border: none; background: linear-gradient(135deg, #17a2b8 0%, #6dd5ed 100%); color: white; border-radius: 8px;">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Info:</strong> Hanya Super Admin yang dapat mengakses dan mengelola akun admin. Regular admin tidak memiliki akses ke halaman ini.
+        </div>
         <div class="table-responsive table-container">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th style="width: 60px;">No</th>
                         <th>Nama</th>
-                        <th>Username</th>
-                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Role</th>
                         <th>Status</th>
                         <th style="width: 150px;">Aksi</th>
                     </tr>
@@ -28,52 +32,58 @@
                 <tbody>
                     <tr>
                         <td>1.</td>
-                        <td>Ibnu</td>
-                        <td>ibnuhu</td>
-                        <td>yustyut</td>
+                        <td>Super Admin</td>
+                        <td>superadmin@hipmi.com</td>
+                        <td>
+                            <span class="badge bg-danger px-3 py-2" style="font-size: 12px; font-weight: 600;">Super Admin</span>
+                        </td>
                         <td>
                             <span class="badge bg-success px-3 py-2" style="font-size: 12px; font-weight: 600;">Aktif</span>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
                         <td>2.</td>
-                        <td>Sarah Indira</td>
-                        <td>sarahind</td>
-                        <td>admin123</td>
+                        <td>Regular Admin</td>
+                        <td>admin@hipmi.com</td>
+                        <td>
+                            <span class="badge bg-primary px-3 py-2" style="font-size: 12px; font-weight: 600;">Admin</span>
+                        </td>
                         <td>
                             <span class="badge bg-success px-3 py-2" style="font-size: 12px; font-weight: 600;">Aktif</span>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
                         <td>3.</td>
-                        <td>Andi Pratama</td>
-                        <td>andipt</td>
-                        <td>secure456</td>
+                        <td>Test Admin</td>
+                        <td>testadmin@hipmi.com</td>
+                        <td>
+                            <span class="badge bg-primary px-3 py-2" style="font-size: 12px; font-weight: 600;">Admin</span>
+                        </td>
                         <td>
                             <span class="badge bg-warning px-3 py-2" style="font-size: 12px; font-weight: 600; color: white;">Pending</span>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>

@@ -38,7 +38,33 @@ Route::get('/admins', function () {
     return view('login_admin.adminhipmi');
 })->name('admin.login');
 
+Route::post('/admins/login', function (Illuminate\Http\Request $request) {
+    $username = $request->input('username');
+    $password = $request->input('password');
+    
+    // Simple role-based authentication
+    $userRole = 'regular_admin'; // Default role
+    
+    if (strtolower($username) === 'superadmin' && $password === 'superadmin123') {
+        $userRole = 'super_admin';
+    } elseif (strtolower($username) === 'admin' && $password === 'admin123') {
+        $userRole = 'regular_admin';
+    } else {
+        return redirect()->back()->withErrors(['error' => 'Invalid credentials']);
+    }
+    
+    // Store user info in session
+    session([
+        'admin_role' => $userRole,
+        'admin_username' => $username,
+        'is_logged_in' => true
+    ]);
+    
+    return redirect()->route('admin.dashboard');
+})->name('admin.login.post');
+
 Route::post('/logout', function () {
+    session()->flush();
     return redirect()->route('admin.login')->with('success', 'Anda berhasil logout!');
 })->name('logout');
 
@@ -49,18 +75,20 @@ Route::prefix('admins')->name('admin.')->group(function () {
         return view('laman_admin.dashboard');
     })->name('dashboard');
 
-    // Accounts Routes
-    Route::get('/accounts', function () {
-        return view('laman_admin.account');
-    })->name('accounts');
-    
-    Route::post('/accounts', function () {
-        return redirect()->back()->with('success', 'Data admin berhasil ditambahkan!');
-    })->name('accounts.store');
-    
-    Route::get('/add-account', function () {
-        return view('laman_admin.add_account');
-    })->name('add.account');
+    // Accounts Routes - Only Super Admin can access
+    Route::middleware(['super.admin'])->group(function () {
+        Route::get('/accounts', function () {
+            return view('laman_admin.account');
+        })->name('accounts');
+        
+        Route::post('/accounts', function () {
+            return redirect()->back()->with('success', 'Data admin berhasil ditambahkan!');
+        })->name('accounts.store');
+        
+        Route::get('/add-account', function () {
+            return view('laman_admin.add_account');
+        })->name('add.account');
+    });
 
     // Katalog Routes
     Route::get('/katalog', [\App\Http\Controllers\KatalogController::class, 'index'])->name('katalog');

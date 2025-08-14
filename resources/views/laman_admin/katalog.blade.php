@@ -47,13 +47,15 @@
                             <td>{{ Str::limit($scholarship->link, 30) }}</td>
                             <td><span class="badge bg-primary">Scholarship</span></td>
                             <td>
-                                <a href="{{ route('admin.katalog.edit', ['scholarship', $scholarship->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                    Edit
+                                <a href="{{ route('admin.katalog.edit', ['scholarship', $scholarship->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <form action="{{ route('admin.katalog.destroy', ['scholarship', $scholarship->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                         </td>
                     </tr>
@@ -77,13 +79,15 @@
                             <td>{{ Str::limit($bootcamp->link, 30) }}</td>
                             <td><span class="badge bg-success">Bootcamp</span></td>
                             <td>
-                                <a href="{{ route('admin.katalog.edit', ['bootcamp', $bootcamp->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                    Edit
+                                <a href="{{ route('admin.katalog.edit', ['bootcamp', $bootcamp->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <form action="{{ route('admin.katalog.destroy', ['bootcamp', $bootcamp->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                         </td>
                     </tr>
@@ -107,13 +111,15 @@
                             <td>-</td>
                             <td><span class="badge bg-info">Article</span></td>
                             <td>
-                                <a href="{{ route('admin.katalog.edit', ['article', $article->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                    Edit
+                                <a href="{{ route('admin.katalog.edit', ['article', $article->id]) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <form action="{{ route('admin.katalog.destroy', ['article', $article->id]) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                         </td>
                     </tr>

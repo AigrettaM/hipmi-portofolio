@@ -7,7 +7,7 @@
 <div class="admin-card">
     <div class="card-header-custom d-flex justify-content-between align-items-center">
         <span>Data Pengurus</span>
-        <a href="{{ route('admin.add.pengurus') }}" class="btn-primary-custom btn-add-data">
+        <a href="{{ route('admin.add.team') }}" class="btn-primary-custom btn-add-data">
             <i class="fas fa-plus"></i>
             Tambah Data
         </a>
@@ -37,11 +37,11 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -56,11 +56,11 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -75,11 +75,11 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Edit
+                            <button class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">
-                                Hapus
+                            <button class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>

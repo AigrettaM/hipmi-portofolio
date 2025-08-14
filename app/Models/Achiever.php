@@ -8,5 +8,6 @@ class Achiever extends Model
 {
     protected $fillable = [
         'photo_url',
+        'description',
     ];
 }

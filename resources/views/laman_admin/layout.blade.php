@@ -493,6 +493,19 @@
             box-shadow: 0 0 30px rgba(82, 255, 182, 0.8);
             transition: all 0.2s ease;
         }
+
+        /* Login Button Styles */
+        .btn-outline-success {
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #52FFB6 !important;
+            border-color: #52FFB6 !important;
+            color: #2c5530 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(82, 255, 182, 0.4);
+        }
         
         /* Special animation for page origin */
         .page-from-button {
@@ -881,7 +894,8 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- Only Super Admin can access Accounts --}}
+                <li class="nav-item" id="accounts-menu" style="display: none;">
                     <a href="{{ route('admin.accounts') }}" class="nav-link {{ request()->routeIs('admin.accounts') ? 'active' : '' }}">
                         <i class="fas fa-users"></i>
                         Accounts
@@ -905,12 +919,12 @@
                         Pengurus
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-cog"></i>
                         Setting
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>
@@ -927,10 +941,10 @@
             </div>
             
             <div class="header-actions">
-                <button class="notification-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge">3</span>
-                </button>
+                <a href="{{ route('admin.login') }}" class="btn btn-outline-success me-3" style="border: 2px solid #52FFB6; color: #52FFB6; border-radius: 8px; padding: 8px 16px; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
+                    <i class="fas fa-sign-in-alt me-2"></i>
+                    Login
+                </a>
                 
                 <div class="user-profile" onclick="toggleProfileDropdown()">
                     <img src="https://via.placeholder.com/36x36/52FFB6/ffffff?text=A" alt="Admin" class="user-avatar">
@@ -1011,6 +1025,10 @@
         // Confirm logout
         function confirmLogout() {
             if (confirm('Apakah Anda yakin ingin logout?')) {
+                // Clear localStorage
+                localStorage.removeItem('admin_role');
+                localStorage.removeItem('admin_username');
+                
                 // Create a form and submit it for logout
                 const form = document.createElement('form');
                 form.method = 'POST';
@@ -1215,6 +1233,45 @@
                 window.location.href = url;
             }, 300);
         }
+        
+        // Role-based menu visibility
+        function checkUserRole() {
+            // Get role from server session (passed from Laravel)
+            const serverRole = @json(session('admin_role', 'guest'));
+            
+            // Sync with localStorage for consistency
+            if (serverRole !== 'guest') {
+                localStorage.setItem('admin_role', serverRole);
+                localStorage.setItem('admin_username', @json(session('admin_username', '')));
+            }
+            
+            const userRole = serverRole;
+            const accountsMenu = document.getElementById('accounts-menu');
+            
+            if (userRole === 'super_admin') {
+                if (accountsMenu) {
+                    accountsMenu.style.display = 'block';
+                }
+            } else {
+                if (accountsMenu) {
+                    accountsMenu.style.display = 'none';
+                }
+                
+                // If user is on accounts page but not super admin, redirect to dashboard
+                if (window.location.pathname.includes('/accounts')) {
+                    alert('Access denied. Super admin privileges required.');
+                    window.location.href = '/admins/dashboard';
+                }
+            }
+            
+            // If no valid session and not on login page, redirect to login
+            if (serverRole === 'guest' && !window.location.pathname.includes('/admins') && window.location.pathname.includes('/admins/')) {
+                window.location.href = '/admins';
+            }
+        }
+        
+        // Check role on page load
+        document.addEventListener('DOMContentLoaded', checkUserRole);
     </script>
     
     @yield('scripts')

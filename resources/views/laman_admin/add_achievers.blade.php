@@ -41,6 +41,15 @@
                     <div class="text-danger small">{{ $message }}</div>
                 @enderror
             </div>
+            
+            <div class="form-group mb-3">
+                <label for="description" class="form-label-custom">Keterangan</label>
+                <textarea id="description" name="description" class="form-control-custom" rows="4" placeholder="Masukkan keterangan tentang pencapaian...">{{ isset($achiever) ? $achiever->description : old('description') }}</textarea>
+                @error('description')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+            
             <div class="text-end">
                 <button type="submit" class="btn-primary-custom">
                     <i class="fas fa-save"></i>

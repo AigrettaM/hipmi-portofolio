@@ -40,11 +40,15 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.team.edit', $team->id) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Edit</a>
+                                <a href="{{ route('admin.team.edit', $team->id) }}" class="btn btn-sm px-3 py-2 me-2" style="background-color: #ffc107; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Edit">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
                                 <form action="{{ route('admin.team.destroy', $team->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;">Hapus</button>
+                                    <button type="submit" class="btn btn-sm px-3 py-2" style="background-color: #dc3545; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 12px;" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
